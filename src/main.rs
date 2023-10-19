@@ -19,6 +19,11 @@ struct Position {
     y: i32,
 }
 
+#[derive(PartialEq, Copy, Clone)]
+enum TileType {
+    Wall, Floor
+}
+
 #[derive(Component)]
 struct Renderable {
     glyph: rltk::FontCharType,
@@ -127,4 +132,8 @@ fn player_input(gs: &mut State, ctx: &mut Rltk){
             _ => {}
         }
     }
+}
+
+pub fn xy_idx(x: i32, y: i32) -> usize {
+    (y as usize * 80) + x as usize
 }
